@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route, NavLink, Redirect} from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 import axiosWithAuth from "../axios";
 
@@ -11,14 +11,12 @@ const initialColor = {
 const ColorList = ({ colors, updateColors }) => {
   console.log(colors);
   const [editing, setEditing] = useState(false);
-  const [addingColor, setaddingColor] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
 
   const editColor = color => {
     setEditing(true);
     setColorToEdit(color);
   };
-
 
   const saveEdit = e => {
     e.preventDefault();
@@ -56,8 +54,10 @@ const ColorList = ({ colors, updateColors }) => {
   return (
     <div className="colors-wrap">
       <p>colors</p>
-      <NavLink to='/addcolor' className="add-button-link"><button className="add-button">Add color</button></NavLink>
-      
+      <NavLink to="/addcolor" className="add-button-link">
+        <button className="add-button">Add color</button>
+      </NavLink>
+
       <ul>
         {colors.map(color => (
           <li key={color.color} onClick={() => editColor(color)}>
@@ -106,38 +106,8 @@ const ColorList = ({ colors, updateColors }) => {
       )}
 
       <div className="spacer" />
-      {/* {
-  <form onSubmit={saveEdit}>
-          <legend>edit color</legend>
-          <label>
-            color name:
-            <input
-              onChange={e =>
-                setColorToEdit({ ...colorToEdit, color: e.target.value })
-              }
-              value={colorToEdit.color}
-            />
-          </label>
-          <label>
-            hex code:
-            <input
-              onChange={e =>
-                setColorToEdit({
-                  ...colorToEdit,
-                  code: { hex: e.target.value }
-                })
-              }
-              value={colorToEdit.code.hex}
-            />
-          </label>
-          <div className="button-row">
-            <button type="submit">save</button>
-            <button onClick={() => setEditing(false)}>cancel</button>
-          </div>
-        </form>
-      } */}
+
       {/* stretch - build another form here to add a color */}
-     
     </div>
   );
 };

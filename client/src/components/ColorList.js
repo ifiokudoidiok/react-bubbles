@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Route, NavLink, Redirect} from 'react-router-dom';
+
 import axiosWithAuth from "../axios";
 
 const initialColor = {
@@ -52,6 +54,8 @@ const ColorList = ({ colors, updateColors }) => {
   return (
     <div className="colors-wrap">
       <p>colors</p>
+      <NavLink to='/addcolor' className="add-button-link"><button className="add-button">Add color</button></NavLink>
+      
       <ul>
         {colors.map(color => (
           <li key={color.color} onClick={() => editColor(color)}>
@@ -100,6 +104,7 @@ const ColorList = ({ colors, updateColors }) => {
       )}
       <div className="spacer" />
       {/* stretch - build another form here to add a color */}
+     
     </div>
   );
 };

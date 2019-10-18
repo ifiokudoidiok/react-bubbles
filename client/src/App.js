@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route,Redirect } from "react-router-dom";
 import Login from "./components/Login";
 import "./styles.scss";
 import BubblePage from "./components/BubblePage";
+import AddColor from "./components/AddColor";
 
 function App() {
   return (
@@ -22,6 +23,16 @@ function App() {
               return <BubblePage {...props} />
             }
             return <Redirect to='/' />
+          }}
+        />
+         <Route
+          exact
+          path='/addcolor'
+          render={props => {
+            if (localStorage.getItem('payload')) {
+              return <AddColor {...props} />
+            }
+            return <Redirect to='/api/login' />
           }}
         />
       </div>
